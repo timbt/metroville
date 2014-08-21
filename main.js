@@ -13,15 +13,16 @@ function tile_Grass() {
 	};
 }
 
-function Grid () {}
-
-function drawLine (x,canvas) {
-	var y = 250;
-	context.fillStyle = "#000000";
-	context.fillRect(0,y,x,10);
-	window.requestAnimationFrame(function() {
-		drawLine(x + 1, canvas);
-	});
+function Grid () {
+	var loc = [[]];
+	
+	this.init = function () {
+		for (i = 0; i < NUM_X_TILES; i++){
+			for (j = 0; j < NUM_Y_TILES; j++){
+				this.loc[i][j] = new tile_Grass();
+			}
+		}
+	};
 }
 
 //main method
@@ -30,6 +31,5 @@ window.onload = function(){
 	context = canvas.getContext("2d");
 	var block = new tile_Grass;
 	block.render(100,100,context);
-	drawLine(0,canvas);
 
 };
